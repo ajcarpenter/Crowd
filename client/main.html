@@ -1,0 +1,35 @@
+<head>
+    <title>Crowd</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span3">
+                <div class="user-card well">
+                    <div class="user-card-photo">
+                        <img class="img-polaroid user-card-photo-img" src="/img/face.jpg" />
+                    </div>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li class="active"><a>All Posts</a></li>
+                        <li><a>My Posts</a></li>
+                        <li><a>Recent Discussions</a></li>
+                    </ul>
+                    <div class="brand-bar">
+                        <h3 class="brand">Crowd</h3>
+                    </div>
+                </div>
+
+                <div class="search-container">
+                    <input class="search-input span12" type="text" placeholder="Search..." />
+                </div>
+            </div>
+            <div class="span9">
+                {{> cardGrid}}                   
+            </div>
+        </div>
+    </div>
+    </div>
+</body>

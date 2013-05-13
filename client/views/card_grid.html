@@ -1,0 +1,17 @@
+<template name="cardGrid">
+    <div class="row-fluid">
+    	{{#each rows}}
+    		<div class="row-fluid">
+    			{{#if rowFirst}}
+    				{{> newPostCard}}
+    			{{/if}}
+	    		{{#each cells}}
+	    			{{> postCard}}
+	    		{{/each}}
+	    		{{#if rowLast}}
+	    			{{> loadMoreCard}}
+	    		{{/if}}
+	    	</div>
+    	{{/each}}
+    </div>
+</template>
