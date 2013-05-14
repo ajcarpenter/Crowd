@@ -48,6 +48,7 @@ body {
 
 .post-card{
 	background: #ffffff;
+	cursor:pointer;
 }
 
 .load-more-card{
@@ -55,6 +56,11 @@ body {
 	color: white;
 	text-align: center;
 	cursor:pointer;
+}
+
+.single-card{
+	background:#fff;
+	height:auto;
 }
 
 
@@ -118,6 +124,69 @@ body {
 	top:0;
 	left:0;
 	width:100%;
+}
+
+/*VIEWERS*/
+.viewer-images{
+	width:100%;
+}
+
+.viewer-container{
+	width:100%;
+	margin-top:50px;
+}
+
+.viewer-seen-by{
+	color: rgb(214, 214, 214);
+}
+
+.viewer-img {
+	margin:0;
+	width:5%;
+	float:left;
+	opacity:0.2;
+	-webkit-transition: all 300ms 0ms;
+	-webkit-transition-delay: ease-in;
+	-moz-transition: all 300ms 0ms ease-in;
+	-o-transition: all 300ms 0ms ease-in;
+	transition: all 300ms 0ms ease-in;	
+}
+
+.viewer-img:hover{
+	opacity:1;
+}
+/*END:VIEWERS*/
+
+.chat-feed{
+	background-color:white;
+}
+
+.chat-row{
+	width:100%;
+	border-bottom-color: rgb(243, 243, 243);
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	padding:3px 0;
+}
+
+.chat-user-img{
+	width:20px;
+	height:20px;
+	float:left;
+	margin-right:5px;
+}
+
+.divider{
+	width:100%;
+	height:1px;
+	background-color: rgb(243, 243, 243);
+	margin:0;
+	padding:0;
+}
+
+.icon-arrow-left{
+	float:right;
+	margin:5px;
 }
 
 #refresh-vector{

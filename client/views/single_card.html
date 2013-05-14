@@ -1,0 +1,13 @@
+<template name="singleCard">
+    {{#with currentPost}}
+        <div class="row-fluid">
+            <div class="span12 card single-card">
+                <a href="{{cardGridPath}}"><i class="icon-arrow-left"></i></a>
+                <h4><a class="user-link">{{author}}</a></h4>
+                <p>{{content}}</p>
+                {{> viewers}}
+            </div>
+        </div>
+        {{> chat}}
+    {{/with}}
+</template>

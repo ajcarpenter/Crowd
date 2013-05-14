@@ -23,3 +23,9 @@
     $this.css("top",  "0px").removeClass("invisible");
   }); 
 };*/
+
+Template.postCard.events({
+  'click .post-card': function(){
+    Meteor.Router.to('singleCard', this._id);   
+  }
+});
