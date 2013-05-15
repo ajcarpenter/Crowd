@@ -6,7 +6,11 @@
     				{{> newPostCard}}
     			{{/if}}
 	    		{{#each cells}}
-	    			{{> postCard}}
+                    {{#if isFlipped}}
+	    			    {{> postCard}}
+                    {{else}}
+                        {{> flippedCard}}
+                    {{/if}}
 	    		{{/each}}
 	    		{{#if rowLast}}
 	    			{{> loadMoreCard}}

@@ -29,3 +29,9 @@ Template.postCard.events({
     Meteor.Router.to('singleCard', this._id);   
   }
 });
+
+Template.postCard.helpers({
+  canFlip: function(){
+    return !!this._img;
+  }
+});

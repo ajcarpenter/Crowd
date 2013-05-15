@@ -29,5 +29,8 @@ Template.cardGrid.helpers({
 	    	rows.push({rowLast: true});
 
 	    return rows;
+	},
+	isFlipped: function(){
+		return _.contains(Session.get('flippedCards'),this._id);
 	}
 });
