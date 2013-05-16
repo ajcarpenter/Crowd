@@ -3,10 +3,8 @@ Template.newPostCard.events({
 		if(e.which === 13){
 			$target = $(e.target);
 
-			Posts.insert({
-				author:'acarpenter', 
-				content:$target.val(), 
-				timestamp: new Date().getTime()
+			Meteor.call('post',{
+				message:$target.val()
 			});
 
 			$target.val('');

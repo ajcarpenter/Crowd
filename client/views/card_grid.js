@@ -8,7 +8,7 @@ Template.cardGrid.helpers({
 
 		var gridWidth = 4;
 
-		Posts.find({},{sort:{timestamp:-1}}).map(function(post) {
+		Posts.find({replyTo:null},{sort:{timestamp:-1}}).map(function(post) {
 			if(cellIndex >= gridWidth){
 				rowIndex++;
 				cellIndex = 0;

@@ -169,6 +169,10 @@ body {
 	padding:3px 0;
 }
 
+.chat-row-right{
+	text-align:right;
+}
+
 .chat-user-img{
 	width:20px;
 	height:20px;
@@ -187,6 +191,12 @@ body {
 .icon-arrow-left{
 	float:right;
 	margin:5px;
+}
+
+.passive-aggressive{
+	color: rgb(214, 214, 214);
+	font-style:italic;
+	text-align:center;
 }
 
 #refresh-vector{

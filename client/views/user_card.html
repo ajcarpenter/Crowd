@@ -1,0 +1,15 @@
+<template name="userCard">
+    <div class="user-card well">
+        <div class="user-card-photo">
+            <img class="img-polaroid user-card-photo-img" src="/img/face.jpg" />
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li class="{{activeRouteClass 'cardGrid'}}"><a href="{{cardGridPath}}">All Posts</a></li>
+            <li><a>My Posts</a></li>
+            <li><a>Recent Discussions</a></li>
+        </ul>
+        <div class="brand-bar">
+            <h3 class="brand">Crowd</h3>
+        </div>
+    </div>
+</template>

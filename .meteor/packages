@@ -9,3 +9,5 @@ preserve-inputs
 bootstrap
 jquery
 router
+accounts-password
+accounts-ui-bootstrap-dropdown

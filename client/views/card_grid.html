@@ -7,9 +7,9 @@
     			{{/if}}
 	    		{{#each cells}}
                     {{#if isFlipped}}
-	    			    {{> postCard}}
+	    			    {{> flippedPost}}
                     {{else}}
-                        {{> flippedCard}}
+                        {{> postCard}}
                     {{/if}}
 	    		{{/each}}
 	    		{{#if rowLast}}
