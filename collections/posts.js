@@ -35,5 +35,8 @@ Meteor.methods({
 		var postId = Posts.insert(post);
 
 		return postId;
+	},
+	seen: function(postId){
+		Posts.find(postId,{$addToSet:{seenBy: Meteor.userId()}});
 	}
 });

@@ -1,0 +1,3 @@
+Crowd is a social broadcast network built in Meteor.
+
+It uses a number of third party packages so I'd recommend building with Meteorite.

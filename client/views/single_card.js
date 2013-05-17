@@ -3,3 +3,7 @@ Template.singleCard.helpers({
 		return Posts.findOne(Session.get('currentPostId'));
 	}
 });
+
+Template.singleCard.rendered(function(){
+	Meteor.call('seen', this._id);
+});

@@ -2,26 +2,9 @@
 	<div class="viewer-container">
 		<p class="viewer-seen-by"><i>Seen by<i></p>
 		<div class="viewer-images">
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />
-			<img class="viewer-img" src="/img/horse.jpg" />								
+			{{#each seenBy}}
+				<img class="viewer-img" src="/img/horse.jpg" />
+			{{/each}}
 		</div>
 	</div>
 </template>
