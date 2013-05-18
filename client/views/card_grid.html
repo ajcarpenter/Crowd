@@ -1,16 +1,34 @@
+<template name="timeline">
+    {{> cardGrid options}}
+</template>
+
+<template name="followers">
+    {{> cardGrid options}}
+</template>
+
+<template name="following">
+    {{> cardGrid options}}
+</template>
+
+<template name="userPosts">
+    {{> cardGrid options}}
+</template>
+
 <template name="cardGrid">
     <div class="row-fluid">
     	{{#each rows}}
     		<div class="row-fluid">
-    			{{#if rowFirst}}
+    			{{#if showCompose}}
     				{{> newPostCard}}
     			{{/if}}
 	    		{{#each cells}}
-                    {{#if isFlipped}}
-	    			    {{> flippedPost}}
-                    {{else}}
+                    {{#if usesTemplate 'postCard'}}
                         {{> postCard}}
                     {{/if}}
+
+                    {{#if usesTemplate 'userCard'}}
+                        {{> userCard}}
+                    {{/if}}                    
 	    		{{/each}}
 	    		{{#if rowLast}}
 	    			{{> loadMoreCard}}

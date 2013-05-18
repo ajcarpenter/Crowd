@@ -4,18 +4,18 @@ body {
 	background:#f3f3f3;
 }
 
-.user-card {
+.user-panel {
 	padding:10px;
 	background-color:white;
 }
 
-.user-card-photo {
+.user-panel-photo {
 	text-align: center;
 	padding: 0 10px;
 	margin: 20px 0;
 }
 
-.user-card-photo-img{
+.user-panel-photo-img{
 	max-height:200px;
 }
 
@@ -51,6 +51,10 @@ body {
 	cursor:pointer;
 }
 
+.post-card-content{
+	
+}
+
 .load-more-card{
 	background: #08c;
 	color: white;
@@ -63,10 +67,12 @@ body {
 	height:auto;
 }
 
-
-/*NEW POST*/
 .new-post-card{
 	background: #ffffff;
+}
+
+.user-card{
+
 }
 /* END: CARDS */
 
@@ -104,19 +110,13 @@ body {
 	color: rgb(214, 214, 214);
 	text-shadow: 1px 1px rgb(162, 162, 162);
 	position:relative;
-	float:right;
+
 	cursor:pointer;
+	line-height: 100%;
 }
 
 .brand-bar{
 	position: relative;
-	height: 30px;
-}
-
-.user-link{
-	color: rgba(78, 153, 96, 1);
-	font-weight:bold;
-	cursor:pointer;
 }
 
 .post-fade-img {
@@ -157,6 +157,8 @@ body {
 }
 /*END:VIEWERS*/
 
+
+/*CHAT*/
 .chat-feed{
 	background-color:white;
 }
@@ -179,6 +181,38 @@ body {
 	float:left;
 	margin-right:5px;
 }
+/*END:CHAT*/
+
+.user-link{
+	color: rgba(78, 153, 96, 1);
+	font-weight:bold;
+	cursor:pointer;
+}
+
+.user-link-flyout{
+	position:absolute;
+	background-color:#f3f3f3;
+	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .20);
+	top:0;
+	left:0;
+	margin: 12px;
+	padding: 7px;
+	-webkit-transition: all 300ms 0ms;
+	-webkit-transition-delay: ease-in;
+	-moz-transition: all 300ms 0ms ease-in;
+	-o-transition: all 300ms 0ms ease-in;
+	transition: all 300ms 0ms ease-in;		
+}
+
+.user-link-follow{
+	margin: 10px;
+	display:block;
+}
+
+.user-link-unfollow{
+	margin: 10px;
+	display:block;
+}
 
 .divider{
 	width:100%;
@@ -186,6 +220,11 @@ body {
 	background-color: rgb(243, 243, 243);
 	margin:0;
 	padding:0;
+}
+
+.invisible{
+	display:none;
+	opacity:0;
 }
 
 .icon-arrow-left{

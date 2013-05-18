@@ -1,4 +1,4 @@
-Follows = new Meteor.collection('follows');
+Follows = new Meteor.Collection('follows');
 
 Meteor.methods({
 	follow:function(userId){

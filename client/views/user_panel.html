@@ -1,0 +1,20 @@
+<template name="userPanel">
+    <div class="user-panel well">
+        {{#if currentUser}}
+            <div class="user-panel-photo">
+                <img class="img-polaroid user-panel-photo-img" src="{{imageURL}}" />
+            </div>
+            <ul class="nav nav-pills nav-stacked">
+                <li class="{{activeRouteClass 'timeline'}}"><a href="{{timelinePath}}">All Posts</a></li>
+                <li class="{{activeRouteClass 'userPosts'}}"><a href="{{userPostsPath currentUser._id}}">My Posts</a></li>
+                <li><a>Recent Discussions</a></li>
+                <li class="divider"></li>
+                <li class="{{activeRouteClass 'followers'}}"><a href="{{followersPath}}">Followers</a></li>
+                <li class="{{activeRouteClass 'following'}}"><a href="{{followingPath}}">Following</a></li>
+            </ul>
+        {{/if}}
+        <div class="brand-bar">
+            <h3 class="brand">Crowd</h3>
+        </div>
+    </div>
+</template>

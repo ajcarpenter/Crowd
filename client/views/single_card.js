@@ -4,6 +4,6 @@ Template.singleCard.helpers({
 	}
 });
 
-Template.singleCard.rendered(function(){
+Template.singleCard.rendered = function(){
 	Meteor.call('seen', this._id);
-});
+};
