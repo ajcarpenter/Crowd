@@ -1,37 +1,54 @@
-/*Template.postCard.rendered = function(){
-  // animate post from previous position to new position
-  var instance = this;
-  var rank = instance.data._rank;
-  var $this = $(this.firstNode);
-  var postHeight = 80;
-  var newPosition = rank * postHeight;
-
-  // if element has a currentPosition (i.e. it's not the first ever render)
-  if (typeof(instance.currentPosition) !== 'undefined') {
-    var previousPosition = instance.currentPosition;
-    // calculate difference between old position and new position and send element there
-    var delta = previousPosition - newPosition;
-    $this.css("top", delta + "px");
-  } else {
-  	$this.addClass('invisible');
-  }
-
-  // let it draw in the old position, then..
-  Meteor.defer(function() {
-    instance.currentPosition = newPosition;
-    // bring element back to its new original position
-    $this.css("top",  "0px").removeClass("invisible");
-  }); 
-};*/
-
 Template.postCard.events({
-  'click .post-card': function(){
-    Meteor.Router.to('singleCard', this._id);   
-  }
+	'click .post-card': function(){
+		Meteor.Router.to('singleCard', this._id);   
+	},
+	'click .post-flip': function(e){
+		e.stopPropagation();
+
+		var post = this;
+
+		post._$postElem.css('webkitAnimationName','card-flip-out');
+
+		post._$postElem.one('webkitAnimationEnd', function(){
+			post._$postElem.css('webkitAnimationName','card-flip-in');
+
+			post._$postElem.find('.post-front, .post-back').toggleClass('invisible');
+
+			post._$postElem.one('webkitAnimationEnd', function(){
+				post._$postElem.css('webkitAnimationName','');
+
+			});
+		});
+	}
 });
 
 Template.postCard.helpers({
-  canFlip: function(){
-    return !!this._img;
-  }
+	canFlip: function(){
+		return !!this._img;
+	}
 });
+
+Template.postCard.rendered = function(){
+	var instance = this;
+	var $post = instance.data._$postElem = $(instance.firstNode);
+/*
+	var newPosition = $post.offset();
+
+	if(instance._currentPosition){
+		var previousPosition = instance._currentPosition;
+
+		$post.css({
+			top: (previousPosition.top - newPosition.top) + 'px',
+			left: (previousPosition.left - newPosition.left) + 'px',
+		});
+	}
+
+	Meteor.defer(function(){
+		instance._currentPosition = newPosition;
+
+		$post.css({
+			top: '0',
+			left:'0'
+		});
+	});*/
+}

@@ -1,5 +1,11 @@
 <template name="postCard">
     <div class="span3 card post-card">
-        <p class="post-card-content">{{> userLink}} {{message}}</p>
+    	<div class="post-front">
+	        <p class="post-card-content">{{> userLink}} {{message}}</p>
+	    </div>
+	    <div class="post-back invisible">
+	    	Some extra content from the post goes here
+	    </div>
+	    <a class="post-flip"><img src="/img/page-curl.png"/></a>
     </div>
 </template>

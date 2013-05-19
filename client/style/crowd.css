@@ -29,11 +29,6 @@ body {
 	height:200px;
 	overflow:hidden;
 	position:relative;
-	-webkit-transition: all 300ms 0ms;
-	-webkit-transition-delay: ease-in;
-	-moz-transition: all 300ms 0ms ease-in;
-	-o-transition: all 300ms 0ms ease-in;
-	transition: all 300ms 0ms ease-in;
 }
 
 @media (max-width: 767px) {
@@ -49,6 +44,9 @@ body {
 .post-card{
 	background: #ffffff;
 	cursor:pointer;
+	-webkit-animation-duration: 0.2s;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: 1;	
 }
 
 .post-card-content{
@@ -238,6 +236,12 @@ body {
 	text-align:center;
 }
 
+.post-flip{
+	bottom:0;
+	right:0;
+	position:absolute;
+}
+
 #refresh-vector{
 	-webkit-transform-origin: center;
 	/*-webkit-animation-name: refresh-rotate;*/
@@ -246,9 +250,33 @@ body {
 	-webkit-animation-iteration-count: 1;	
 }
 
+
+
+
 /*Animations*/
 @-webkit-keyframes refresh-rotate
 {
 	from {-webkit-transform: rotate(0deg);}
 	to {-webkit-transform: rotate(360deg);}
+}
+
+/*Animations*/
+@-webkit-keyframes card-flip-out
+{
+	from {
+		-webkit-transform: rotateY(0deg);
+	}
+	to {
+		-webkit-transform: rotateY(90deg);
+	}
+}
+
+@-webkit-keyframes card-flip-in
+{
+	from {
+		-webkit-transform: rotateY(-90deg);
+	}
+	to {
+		-webkit-transform: rotateY(0deg);
+	}
 }
