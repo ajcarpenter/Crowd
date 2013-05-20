@@ -8,17 +8,16 @@ Template.userLinkFlyout.events({
 	'click .user-link-follow': function(e){
 		e.stopPropagation();
 
-		Meteor.call('follow',this.userId);
+		Meteor.call('follow',this._id);
 	},
 	'click .user-link-unfollow': function(e){
 		e.stopPropagation();
 
-		Meteor.call('unfollow',this.userId);
+		Meteor.call('unfollow',this._id);
 	},
 	'mouseleave .user-link-flyout': function(e,template){
 		//TODO: Check template is being passed template instance
-		template._$userLinkFlyout.addClass('invisible');
-		template._flyoutVisible = false;
+		template.find('.user-link-flyout').classList.add('invisible');
 	}
 });
 

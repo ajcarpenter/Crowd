@@ -30,9 +30,10 @@
                         {{> userCard}}
                     {{/if}}                    
 	    		{{/each}}
-	    		{{#if rowLast}}
-	    			{{> loadMoreCard}}
-	    		{{/if}}
+
+                {{#if showLoadMore rowLast}}
+                    {{> loadMoreCard}}
+                {{/if}}
 	    	</div>
     	{{/each}}
     </div>

@@ -1,4 +1,3 @@
 Template.userCard.helpers({
-  
 
 });

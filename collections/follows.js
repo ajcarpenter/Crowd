@@ -33,6 +33,6 @@ Meteor.methods({
 	addTag:function(userId, tag){
 		var user = Meteor.user();
 
-		Follows.find({userId: userId, followerId: user._id},$set:{$addToSet:{tags: tag}});
+		Follows.find({userId: userId, followerId: user._id},{$addToSet:{tags: tag}});
 	}
 })

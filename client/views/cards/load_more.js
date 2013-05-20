@@ -6,5 +6,7 @@ Template.loadMoreCard.events({
 		elem.addEventListener('webkitAnimationEnd', function(){
 			this.style.webkitAnimationName = '';
 		}, false);
+
+		this.paginationHandle.loadNextPage();
 	}
 });

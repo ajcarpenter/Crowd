@@ -1,13 +1,14 @@
 Template.userLink.events({
-	'mouseenter .user-link': function(e){
+	'mouseenter .user-link': function(e,template){
 		//TODO: Figure out if i can get flyout template instance here
-		if(this.userId != Meteor.userId())
-			this._$userLinkFlyout.removeClass('invisible');
+		if(this._id != Meteor.userId()){
+			template.find('.user-link-flyout').classList.remove('invisible');
+		}
 	}
 })
 
 Template.userLink.helpers({
 	'isCurrentUser': function(userId){
-		return userId === Meteor.userId();
+		return this._id === Meteor.userId();
 	}
 })

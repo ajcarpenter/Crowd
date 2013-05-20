@@ -10,4 +10,4 @@ jquery
 router
 accounts-password
 accounts-ui-bootstrap-dropdown
-publish-with-relations
+paginated-subscription

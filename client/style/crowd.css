@@ -1,6 +1,5 @@
 body {
-	padding-top: 40px;
-	padding-bottom: 40px;
+	padding-top: 20px;
 	background:#f3f3f3;
 }
 
@@ -70,7 +69,7 @@ body {
 }
 
 .user-card{
-
+	background: #ffffff;
 }
 /* END: CARDS */
 

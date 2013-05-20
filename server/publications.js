@@ -1,5 +1,5 @@
-Meteor.publish('posts', function() {
-	return Posts.find();
+Meteor.publish('userPosts', function(userId) {
+	return Posts.find({userId: userId, replyTo: null});
 });
 
 Meteor.publish('replies', function(postId){
@@ -7,67 +7,78 @@ Meteor.publish('replies', function(postId){
 		return Posts.find({replyTo:postId});
 });
 
-/*Meteor.publish('following', function(userId){
-	return Follows.find({followerId:userId});
-});
-
-Meteor.publish('followers', function(userId){
-	return Follows.find({userId:userId});
-});*/
-
-
 Meteor.publish('follows', function(userId){
-	return Follows.find({$or:[{userId: userId}, {followerId: userId}]});
-});
+	var self = this;
+	var userHandles = [];
 
-/*Meteor.publish('follows', function(userId){
-	Meteor.publishWithRelations({
-		handle: this,
-		collection: Follows,
-		filter: {followerId: userId},
-		mappings: [{
-			key: 'userId',
-			collection: Posts,
-			filter: {userId: }
+	var followHandle = Follows.find({$or:[{userId: userId}, {followerId: userId}]}).observe({
+		added: function(follow){
+			var otherUserId = follow.userId === userId ? follow.followerId : follow.userId;
+			if(!userHandles[otherUserId]){
+				var userHandle = Meteor.users.find({_id: otherUserId}, {fields: {'username': 1, 'profile': 1}});
+
+				userHandles[otherUserId] = userHandle.observe({
+					added: function(user){
+						self.added('users', user._id, user);
+					},
+					removed: function(user){
+						self.removed('users', user._id);
+					}
+				});
+			}
+			self.added('follows', follow._id, follow);
+		},
+		removed: function(follow){
+			var otherUserId = follow.userId === userId ? follow.followerId : follow.userId;
+			userHandles[otherUserId] && userHandles[otherUserId].stop();
+			self.removed('follows'. follow._id);
 		}
-
-
-		]
-
-
 	});
 
+	self.ready();
 
-	var sub = this, 
-		followHandle = null, 
-		postHandles = [];
+	self.onStop(function(){
+		followHandle.stop();
 
-	var publishFollowPosts = function(follow){
-		var posts = Posts.find({userId: follow.userId});
-		postHandles[follow._id] = posts.observe({
-			added: function(id, post){
-				sub.added('posts', id, post);
+		for(var id in userHandles){
+			userHandles[id].stop();
+		}
+	});
+});
+
+Meteor.publish('timeline', function(limit){
+	var self = this;
+	var postHandles = [];
+
+	var followingHandle = Follows.find({followerId: self.userId}).observe({
+		added: function(follow){
+			var postHandle = Posts.find({userId: follow.userId, replyTo:null},{sort:{timestamp:-1}, limit:limit});
+			postHandles[follow.userId] = postHandle.observe({
+				added: function(post){
+					self.added('posts', post._id, post);
+				},
+				removed: function(post){
+					self.removed('posts', post._id);
+				}
+			});
+			self.added('follows', follow._id, follow);
+		},
+		removed: function(follow){
+			var postHandle = postHandles[follow.userId];
+			if(postHandle){
+				postHandle.stop();
 			}
-		});
+			self.removed('follows', follow._id);
+		}
+	});
 
-		followHandle = Follows.find({$or:[{userId: userId}, {followerId: userId}]}).observe({
-			added: function(id, follow) {
-				publishFollowPosts(follow);
-				sub.added('follows', id, follow);
-			},
-			removed: function(id) {
-				postHandles[id] && postHandles[id].stop();
-				sub.removed('follows', id, _.keys(oldFollow));
-			}
+	self.ready();
 
-		});
+	self.onStop(function(){
+		followingHandle.stop();
 
-		sub.ready();
-
-		sub.onStop(function() {
-			followHandle.stop();
-			postHandles.stop();
-		});
-
-	}
-});*/
+		for(var id in postHandles){
+			postHandles[id].stop();
+		}
+	});
+});

@@ -25,30 +25,13 @@ Template.postCard.events({
 Template.postCard.helpers({
 	canFlip: function(){
 		return !!this._img;
+	},
+	user: function(){
+		return Meteor.users.findOne(this.userId);
 	}
 });
 
 Template.postCard.rendered = function(){
 	var instance = this;
 	var $post = instance.data._$postElem = $(instance.firstNode);
-/*
-	var newPosition = $post.offset();
-
-	if(instance._currentPosition){
-		var previousPosition = instance._currentPosition;
-
-		$post.css({
-			top: (previousPosition.top - newPosition.top) + 'px',
-			left: (previousPosition.left - newPosition.left) + 'px',
-		});
-	}
-
-	Meteor.defer(function(){
-		instance._currentPosition = newPosition;
-
-		$post.css({
-			top: '0',
-			left:'0'
-		});
-	});*/
 }
