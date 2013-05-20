@@ -1,6 +1,8 @@
 <template name="userLinkFlyout">
 	<div class="user-link-flyout invisible">
 		<a class="user-link" href="{{userPostsPath userId}}">{{author}}</a>
+		{{! Put a user tag input/display field here}}
+		
 		{{#if following userId}}
 			<a class="btn user-link-unfollow">Unfollow</a>
 		{{else}}

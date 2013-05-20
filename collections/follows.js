@@ -1,3 +1,12 @@
+/*
+Follow
+{
+	_id,
+	userId,
+	followerId,
+	tags:[]
+}
+*/
 Follows = new Meteor.Collection('follows');
 
 Meteor.methods({
@@ -20,5 +29,10 @@ Meteor.methods({
 			userId: userId,
 			followerId: user._id		
 		});
+	},
+	addTag:function(userId, tag){
+		var user = Meteor.user();
+
+		Follows.find({userId: userId, followerId: user._id},$set:{$addToSet:{tags: tag}});
 	}
 })

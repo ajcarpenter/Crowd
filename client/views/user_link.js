@@ -1,5 +1,6 @@
 Template.userLink.events({
 	'mouseenter .user-link': function(e){
+		//TODO: Figure out if i can get flyout template instance here
 		if(this.userId != Meteor.userId())
 			this._$userLinkFlyout.removeClass('invisible');
 	}

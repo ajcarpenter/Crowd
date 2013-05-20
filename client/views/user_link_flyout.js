@@ -15,12 +15,14 @@ Template.userLinkFlyout.events({
 
 		Meteor.call('unfollow',this.userId);
 	},
-	'mouseleave .user-link-flyout': function(e){
-		this._$userLinkFlyout.addClass('invisible');
+	'mouseleave .user-link-flyout': function(e,template){
+		//TODO: Check template is being passed template instance
+		template._$userLinkFlyout.addClass('invisible');
+		template._flyoutVisible = false;
 	}
 });
 
 
 Template.userLinkFlyout.rendered = function(){
-	this.data._$userLinkFlyout = $(this.find('.user-link-flyout'));
+	this._$userLinkFlyout = $(this.firstNode);
 }
