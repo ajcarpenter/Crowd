@@ -27,7 +27,8 @@ Template.postCard.helpers({
 		return !!this._img;
 	},
 	user: function(){
-		return Meteor.users.findOne(this.userId);
+		//We've packaged the username in the post so simulate the full user object
+		return {_id: this.userId, username: this.author};
 	}
 });
 

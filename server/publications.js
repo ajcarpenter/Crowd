@@ -2,6 +2,12 @@ Meteor.publish('userPosts', function(userId) {
 	return Posts.find({userId: userId, replyTo: null});
 });
 
+Meteor.publish('currentPost', function(postId){
+	//This is to make sure a post is returned if a user navigates 
+	//to a post not in their timeline or on a user profile.
+	return Posts.find(postId);
+});
+
 Meteor.publish('replies', function(postId){
 	if(postId)
 		return Posts.find({replyTo:postId});
@@ -80,5 +86,35 @@ Meteor.publish('timeline', function(limit){
 		for(var id in postHandles){
 			postHandles[id].stop();
 		}
+	});
+});
+
+
+Meteor.publish('timelineV2', function(limit){
+	var self = this;
+	var postsHandle;
+
+	var following = Follows.find({followerId: self.userId})
+		.map(function(follow){
+			return follow.userId;
+		});
+
+	var followingHandle = Follows.find({followerId: self.userId}).observe({
+		added: function(follow){
+			following.push(follow.userId);
+			postsHandle = Posts.find({userId: {$in: following}, replyTo:null},{sort:{timestamp:-1}, limit:limit});
+			self.added('follows', follow._id, follow);
+		},
+		removed: function(follow){
+			following = _.without(following, follow.userId);
+			postsHandle = Posts.find({userId: {$in: following}, replyTo:null},{sort:{timestamp:-1}, limit:limit});
+			self.removed('follows', follow._id);
+		}
+	});
+
+	self.ready();
+
+	self.onStop(function(){
+		followingHandle.stop();
 	});
 });
