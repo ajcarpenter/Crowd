@@ -8,4 +8,6 @@ Meteor.autorun(function(){
 
 	userFollowsHandle = Meteor.subscribe('follows', Session.get('currentUserId'));
 	userPostsHandle = Meteor.subscribe('userPosts', Session.get('currentUserId'));
+
+	userSearchHandle = Meteor.subscribe('userSearch', Session.get('searchQuery'));
 });

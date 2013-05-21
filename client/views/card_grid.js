@@ -50,7 +50,17 @@ Template.userPosts.helpers({
 	}
 });
 
-
+Template.userSearch.helpers({
+	options: function() {
+		return {
+			template:'userCard',
+			showCompose: false,
+			collection: function(){
+				return Meteor.users.find({username: {$regex : Session.get('searchQuery')}});
+			}
+		};
+	}
+});
 
 Template.cardGrid.helpers({
 	rows:function(){
