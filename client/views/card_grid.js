@@ -84,7 +84,8 @@ Template.cardGrid.helpers({
 				rows[rowIndex] = {cells: [], showCompose: rowIndex === 0 && options.showCompose};
 			}
 
-			rows[rowIndex].cells[cellIndex++] = _.extend(doc, {template: options.template});
+			doc['template'] = options.template; //TODO: Check if doc retains template instance
+			rows[rowIndex].cells[cellIndex++] = doc;//_.extend(doc, {template: options.template});
 
 			return doc;
 	    });
@@ -98,9 +99,6 @@ Template.cardGrid.helpers({
 	    }
 
 	    return rows;
-	},
-	isFlipped: function(){
-		return _.contains(Session.get('flippedCards'),this._id);
 	},
 	usesTemplate: function(template){
 		return this.template === template;

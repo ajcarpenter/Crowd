@@ -1,8 +1,14 @@
 /*
+Anything coupled to a userCard grid should also publish the user doc
+so we can ensure that we have username/image refs. For post cards, we assume
+userId is denormalised on to the post so don't need user doc. Subject to change.
+*/
+
+/*
 Set up array and dependency for tracking following list
 This allows us to republish timeline posts.
 */
-var _following = [];
+var _following = [Meteor.userId()];
 var _followingListener = new Deps.Dependency();
 
 following = function(){
@@ -10,6 +16,23 @@ following = function(){
 	return _following;
 }
 
+var defaultUserFields = {fields: {'username': 1, 'profile': 1}};
+
+var publishUser = function(userId, userHandles, pub){
+	var userHandle = Meteor.users.find({_id: userId}, defaultUserFields);
+
+	if(pub && !userHandles[userId]){
+		userHandles[userId] = userHandle.observe({
+			added: function(user){
+				pub.added('users', user._id, user);
+			},
+			removed: function(user){
+				pub.removed('users', user._id);
+			}
+		});
+	} else 
+		return userHandle;
+}
 
 //Start publications
 
@@ -29,34 +52,20 @@ Meteor.publish('replies', function(postId){
 });
 
 Meteor.publish('userSearch', function(searchQuery){
-	return Meteor.users.find({username: {$regex: searchQuery}});
+	if(searchQuery && searchQuery.length > 0)
+		return Meteor.users.find({username: {$regex: searchQuery}}, _.extend(defaultUserFields,{limit:20});
 });
 
 Meteor.publish('follows', function(userId){
 	var self = this;
 	var userHandles = [];
 
-	var publishUser = function(userId){
-		if(!userHandles[userId]){
-			var userHandle = Meteor.users.find({_id: userId}, {fields: {'username': 1, 'profile': 1}});
-
-			userHandles[userId] = userHandle.observe({
-				added: function(user){
-					self.added('users', user._id, user);
-				},
-				removed: function(user){
-					self.removed('users', user._id);
-				}
-			});
-		}
-	}
-
 	var followingHandle = Follows.find({followerId: userId}).observe({
 		added: function(follow){
 			_following.push(follow.userId);
 			_followingListener.changed();
 
-			publishUser(follow.userId);
+			publishUser(follow.userId, userHandles, self);
 			self.added('follows', follow._id, follow);
 		},
 		removed: function(follow){
@@ -70,7 +79,7 @@ Meteor.publish('follows', function(userId){
 
 	var followerHandle = Follows.find({userId: userId}).observe({
 		added: function(follow){
-			publishUser(follow.followerId);
+			publishUser(follow.followerId, userHandles, self);
 			self.added('follows', follow._id, follow);
 		},
 		removed: function(follow){
@@ -78,7 +87,6 @@ Meteor.publish('follows', function(userId){
 			self.removed('follows'. follow._id);
 		}
 	});
-	
 
 	self.ready();
 
