@@ -25,12 +25,24 @@ body {
 	box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, .20);
 	padding: 19px;
 	margin-bottom: 20px;
-	height:200px;
+	height:190px;
 	overflow:hidden;
 	position:relative;
+
+	width: 190px;
+	display: block;
+	float: left;
+	box-sizing: border-box;
+	margin-right: 20px;	
 }
 
 @media (max-width: 767px) {
+	.card{
+		margin-right: 0;
+		float:none;
+		width:100%;
+	}
+
 	.post-card{
 		height:auto;
 	}
@@ -277,5 +289,15 @@ body {
 	}
 	to {
 		-webkit-transform: rotateY(0deg);
+	}
+}
+
+@-webkit-keyframes fade-in
+{
+	from {
+		opacity:0;
+	}
+	to {
+		opacity:1;
 	}
 }

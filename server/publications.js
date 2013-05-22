@@ -8,7 +8,7 @@ userId is denormalised on to the post so don't need user doc. Subject to change.
 Set up array and dependency for tracking following list
 This allows us to republish timeline posts.
 */
-var _following = [Meteor.userId()];
+var _following = [];
 var _followingListener = new Deps.Dependency();
 
 following = function(){
@@ -53,7 +53,7 @@ Meteor.publish('replies', function(postId){
 
 Meteor.publish('userSearch', function(searchQuery){
 	if(searchQuery && searchQuery.length > 0)
-		return Meteor.users.find({username: {$regex: searchQuery}}, _.extend(defaultUserFields,{limit:20});
+		return Meteor.users.find({username: {$regex: searchQuery}}, _.extend(defaultUserFields,{limit:20}));
 });
 
 Meteor.publish('follows', function(userId){
@@ -101,5 +101,5 @@ Meteor.publish('follows', function(userId){
 });
 
 Meteor.publish('timeline', function(limit){
-	return Posts.find({userId: {$in: following()}, replyTo:null},{sort:{timestamp:-1}, limit:limit});
+	return Posts.find({$or:[{userId: {$in: following()}}, {userId: this.userId}], replyTo:null},{sort:{timestamp:-1}, limit:limit});
 });

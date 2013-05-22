@@ -6,7 +6,7 @@ Template.timeline.helpers({
 			paginationHandle: timelineHandle,
 			collection: function(){
 				var following = Follows.find({followerId: Meteor.userId()}).map(function(follow){return follow.userId;});
-				return Posts.find({replyTo:null, userId: {$in: following}},{sort:{timestamp:-1}, limit: timelineHandle.limit()});
+				return Posts.find({replyTo: null, $or:[{userId: {$in: following}}, {userId: this.userId}]},{sort:{timestamp:-1}, limit: timelineHandle.limit()});
 			}
 		};
 	}
@@ -63,47 +63,13 @@ Template.userSearch.helpers({
 });
 
 Template.cardGrid.helpers({
-	rows:function(){
-		var i = 1,
-			rows = [],
-			cells = [],
-			rowIndex = 0,
-			options = this;
-
-		var cellIndex = options.showCompose ? 1 : 0;
-
-		var gridWidth = 4;
-
-		options.collection().map(function(doc) {
-			if(cellIndex >= gridWidth){
-				rowIndex++;
-				cellIndex = 0;
-			}
-
-			if(!rows[rowIndex]){
-				rows[rowIndex] = {cells: [], showCompose: rowIndex === 0 && options.showCompose};
-			}
-
-			doc['template'] = options.template; //TODO: Check if doc retains template instance
-			rows[rowIndex].cells[cellIndex++] = doc;//_.extend(doc, {template: options.template});
-
-			return doc;
-	    });
-
-	    if(rows.length > 0 && rows[rows.length - 1].cells.length < gridWidth){
-	    	rows[rows.length - 1]['rowLast'] = true;
-	    	rows[rows.length - 1]['paginationHandle'] = options.paginationHandle;
-
-	    } else {
-	    	rows.push({rowLast: true, paginationHandle: options.paginationHandle});
-	    }
-
-	    return rows;
-	},
 	usesTemplate: function(template){
 		return this.template === template;
 	},
-	showLoadMore: function(rowLast){
-		return !!this.paginationHandle && rowLast;
+	showLoadMore: function(){
+		return !!this.paginationHandle;
+	},
+	cells:function(){
+		return this.collection();
 	}
 });

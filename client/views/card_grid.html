@@ -19,26 +19,23 @@
 </template>
 
 <template name="cardGrid">
-    <div class="row-fluid">
-    	{{#each rows}}
-    		<div class="row-fluid">
-    			{{#if showCompose}}
-    				{{> newPostCard}}
-    			{{/if}}
-	    		{{#each cells}}
-                    {{#if usesTemplate 'postCard'}}
-                        {{> postCard}}
-                    {{/if}}
+	{{#if showCompose}}
+		{{> newPostCard}}
+	{{/if}}
 
-                    {{#if usesTemplate 'userCard'}}
-                        {{> userCard}}
-                    {{/if}}                    
-	    		{{/each}}
+    {{#if usesTemplate 'postCard'}}
+        {{#each cells}}
+            {{> postCard}}
+        {{/each}}
+    {{/if}}
 
-                {{#if showLoadMore rowLast}}
-                    {{> loadMoreCard}}
-                {{/if}}
-	    	</div>
-    	{{/each}}
-    </div>
+    {{#if usesTemplate 'userCard'}}
+        {{#each cells}}
+            {{> userCard}}
+        {{/each}}
+    {{/if}}
+
+    {{#if showLoadMore}}
+        {{> loadMoreCard}}
+    {{/if}}
 </template>

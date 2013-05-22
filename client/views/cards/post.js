@@ -2,20 +2,20 @@ Template.postCard.events({
 	'click .post-card': function(){
 		Meteor.Router.to('singleCard', this._id);   
 	},
-	'click .post-flip': function(e){
+	'click .post-flip': function(e,template){
 		e.stopPropagation();
 
-		var post = this;
+		var $post = template._$post;
 
-		post._$postElem.css('webkitAnimationName','card-flip-out');
+		$post.css('webkitAnimationName','card-flip-out');
 
-		post._$postElem.one('webkitAnimationEnd', function(){
-			post._$postElem.css('webkitAnimationName','card-flip-in');
+		$post.one('webkitAnimationEnd', function(){
+			$post.css('webkitAnimationName','card-flip-in');
 
-			post._$postElem.find('.post-front, .post-back').toggleClass('invisible');
+			$post.find('.post-front, .post-back').toggleClass('invisible');
 
-			post._$postElem.one('webkitAnimationEnd', function(){
-				post._$postElem.css('webkitAnimationName','');
+			$post.one('webkitAnimationEnd', function(){
+				$post.css('webkitAnimationName','');
 
 			});
 		});
@@ -34,5 +34,14 @@ Template.postCard.helpers({
 
 Template.postCard.rendered = function(){
 	var instance = this;
-	var $post = instance.data._$postElem = $(instance.firstNode);
+
+	if(!instance._$post){
+		var $post = instance._$post = $(instance.firstNode);
+	} else {
+		$post.css('webkitAnimationName','fade-in');
+
+		$post.one('webkitAnimationEnd', function(){
+			$post.css('webkitAnimationName','');
+		});
+	}
 }
