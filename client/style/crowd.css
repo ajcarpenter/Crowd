@@ -301,3 +301,24 @@ body {
 		opacity:1;
 	}
 }
+
+@-webkit-keyframes fade-out
+{
+	from {
+		opacity:1;
+	}
+	to {
+		opacity:0;
+	}
+}
+
+@-webkit-keyframes shift-card-right
+{
+	from{
+		top:0;
+	}
+	to {
+		left:0;
+		top:0;
+	}
+}

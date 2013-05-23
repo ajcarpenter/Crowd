@@ -9,7 +9,7 @@ Meteor.methods({
 
 		var post = _.extend(_.pick(postAttr,'message'), {
 			userId: user._id,
-			author: user.username,
+			username: user.username,
 			timestamp: new Date().getTime()
 		});
 
@@ -30,7 +30,7 @@ Meteor.methods({
 		var timestamp = new Date().getTime();
 		var post = _.extend(_.pick(postAttr,'message','replyTo'), {
 			userId: user._id,
-			author: user.username,
+			username: user.username,
 			timestamp: timestamp
 		});
 
