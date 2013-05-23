@@ -42,7 +42,7 @@ Template.postCard.rendered = function(){
 	//are being re-rendered when a new one is added.
 	if(!instance._lastPosition){
 		instance._animQueue = ['fade-in 1s'];
-	} else {
+	} /*else {
 		var positionDelta = {
 			top: newPosition.top - instance._lastPosition.top,
 			left: newPosition.left - instance._lastPosition.left
@@ -56,7 +56,7 @@ Template.postCard.rendered = function(){
 			$post.css({top:positionDelta.top, left:positionDelta.left});
 			instance._animQueue = ['fade-out 0.5s', 'shift-card-right 0.5s'];
 		}
-	}	
+	}	*/
 
 	instance._lastPosition = newPosition;
 

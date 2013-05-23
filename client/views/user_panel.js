@@ -13,6 +13,6 @@ Template.userPanel.helpers({
   imageURL: function(){
   	var user = Meteor.user();
 
-  	return (user && user.profile && user.profile.imageURLs && user.profile.imageURLs.card) || '/img/nopic.jpg';
+  	return (user && user.profile && user.profile.imageURLs && user.profile.imageURLs.card) || '/img/nopic.png';
   }
 });

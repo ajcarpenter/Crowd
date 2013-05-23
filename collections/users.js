@@ -2,7 +2,7 @@ Meteor.methods({
 	'setUserImageURL':function(userId, url){
 		return Meteor.users.update(userId,{$set:{'profile.imageURLs.card': url}});
 	},
-	'changeName': function('newName'){
+	'changeName': function(newName){
 		if(Meteor.users.findOne({username:newName}))
 			throw new Meteor.Error(409, 'Name already taken.');
 

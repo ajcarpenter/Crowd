@@ -1,5 +1,5 @@
 // Fixture data 
-if (Posts.find().count() === 0) {
+if (false) {
   var timestamp = new Date().getTime();
 
   Posts.insert({

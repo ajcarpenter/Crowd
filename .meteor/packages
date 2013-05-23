@@ -11,3 +11,4 @@ router
 accounts-password
 accounts-ui-bootstrap-dropdown
 paginated-subscription
+spin

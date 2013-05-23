@@ -6,7 +6,7 @@ Template.timeline.helpers({
 			paginationHandle: timelineHandle,
 			collection: function(){
 				var following = Follows.find({followerId: Meteor.userId()}).map(function(follow){return follow.userId;});
-				return Posts.find({replyTo: null, $or:[{userId: {$in: following}}, {userId: this.userId}]},{sort:{timestamp:-1}, limit: timelineHandle.limit()});
+				return Posts.find({replyTo: null, $or:[{userId: {$in: following}}, {userId: Meteor.userId()}]},{sort:{timestamp:-1}, limit: timelineHandle.limit()});
 			}
 		};
 	}
