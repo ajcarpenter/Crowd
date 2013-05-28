@@ -1,5 +1,5 @@
 <template name="userLink">
-	<a class="user-link" href="{{userPostsPath _id}}">{{username}}</a>
+	<a href="{{userPostsPath _id}}" class="user-link">{{username}}</a>
 	{{#unless isCurrentUser}}
 		{{> userLinkFlyout}}
 	{{/unless}}

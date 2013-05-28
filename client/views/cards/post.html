@@ -1,6 +1,12 @@
 <template name="postCard">
     <div class="card post-card">
     	<div class="post-front">
+    		<!--div class="post-image-fade"></div-->
+    		<span class="card-action-bar">
+    			{{#if recentActivityLevel}}
+    				<img src="{{recentActivityLevel}}"></img>
+    			{{/if}}
+    		</span>
 	        <p class="post-card-content">{{> userLink user}} {{message}}</p>
 	    </div>
 	    <div class="post-back invisible">

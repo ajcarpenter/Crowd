@@ -6,7 +6,7 @@
             </div>
             <ul class="nav nav-pills nav-stacked">
                 <li class="{{activeRouteClass 'timeline'}}"><a href="{{timelinePath}}">All Posts</a></li>
-                <li class="{{activeRouteClass 'userPosts'}}"><a href="{{userPostsPath currentUser._id}}">My Posts</a></li>
+                <li class="{{activeRouteClass 'userPosts' currentUser._id}}"><a href="{{userPostsPath currentUser._id}}">My Posts</a></li>
                 <li><a>Recent Discussions</a></li>
                 <li class="divider"></li>
                 <li class="{{activeRouteClass 'followers'}}"><a href="{{followersPath}}">Followers</a></li>

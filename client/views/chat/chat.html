@@ -5,7 +5,7 @@
 	<div class="row-fluid">
 		<div class="well chat-feed span10 offset1">
 			{{#each replies}}
-				<div class="{{_class}}"><img class="chat-user-img" src="/img/horse.jpg"/><a class="user-link">{{author}}</a> {{message}}</div>
+				<div class="{{_class}}"><img class="chat-user-img" src="/img/nopic.png"/><a class="user-link">{{username}}</a> {{message}}</div>
 			{{/each}}
 			{{#if hasNoReplies}}
 				<div class="passive-aggressive">Boy... it's quiet in here.</div>

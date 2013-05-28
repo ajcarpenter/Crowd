@@ -1,9 +1,9 @@
 <template name="userLinkFlyout">
 	<div class="user-link-flyout invisible">
-		<a class="user-link" href="{{userPostsPath userId}}">{{username}}</a>
-		{{! Put a user tag input/display field here}}
-		
+		<a class="user-link" href="{{userPostsPath _id}}">{{username}}</a>
+	
 		{{#if following _id}}
+			{{> tagEditor _id}}
 			<a class="btn user-link-unfollow">Unfollow</a>
 		{{else}}
 			<a class="btn user-link-follow">Follow</a>

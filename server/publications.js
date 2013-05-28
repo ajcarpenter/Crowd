@@ -73,7 +73,7 @@ Meteor.publish('follows', function(userId){
 			_followingListener.changed();
 
 			userHandles[follow.userId] && userHandles[follow.userId].stop();
-			self.removed('follows'. follow._id);
+			self.removed('follows', follow._id);
 		}
 	});
 
@@ -84,7 +84,7 @@ Meteor.publish('follows', function(userId){
 		},
 		removed: function(follow){
 			userHandles[follow.followerId] && userHandles[follow.followerId].stop();
-			self.removed('follows'. follow._id);
+			self.removed('follows', follow._id);
 		}
 	});
 

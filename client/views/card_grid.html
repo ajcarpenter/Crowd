@@ -23,6 +23,10 @@
 		{{> newPostCard}}
 	{{/if}}
 
+    {{#if showUserCard}}
+        {{> userCard thisUser}}
+    {{/if}}
+
     {{#if usesTemplate 'postCard'}}
         {{#each cells}}
             {{> postCard}}

@@ -1,5 +1,25 @@
 <template name="userCard">
     <div class="card user-card">
-        <p>{{> userLink}}</p>
+    	<div class="post-front">
+			{{> userLink}}
+	        <div class="user-card-tags">{{#each tags}}{{tag}} {{/each}}</div>
+	    </div>
+	    <div class="post-back invisible">
+	    	<ul class="unstyled">
+		    	<li>
+		    		<span class="muted">Posts</span>
+		    		<span class="pull-right badge">{{profile.postCount}}</span>
+		    	</li>
+		    	<li>
+		    		<span class="muted">Followers</span> 
+		    		<span class="pull-right badge">{{profile.followerCount}}</span>
+		    	</li>
+		    	<li>
+		    		<span class="muted">Following</span>
+		    		<span class="pull-right badge">{{profile.followingCount}}</span>
+		    	</li>
+		    </ul>
+	    </div>
+	    <a class="post-flip"><img src="/img/page-curl.png"/></a>    	
     </div>
 </template>

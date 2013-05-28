@@ -42,6 +42,7 @@ Template.userPosts.helpers({
 	options: function() {
 		return {
 			template:'postCard',
+			showUserCard:true,
 			showCompose: Session.get('currentUserId') === Meteor.userId(),
 			collection: function(){
 				return Posts.find({userId: Session.get('currentUserId'), replyTo:null},{sort:{timestamp:-1}});
@@ -71,5 +72,11 @@ Template.cardGrid.helpers({
 	},
 	cells:function(){
 		return this.collection();
+	},
+	thisUser:function(){
+		return Meteor.users.findOne(Session.get('currentUserId'));
+	},
+	showUserCard:function(){
+		return this.showUserCard && Session.get('currentUserId') != Meteor.userId();
 	}
 });

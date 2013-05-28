@@ -1,12 +1,14 @@
 Template.userPanel.helpers({
-  activeRouteClass: function(/* route names */) {
-
+  activeRouteClass: function(routeName,param) {
+/*
     var args = Array.prototype.slice.call(arguments, 0);
     args.pop();    
 
     var active = _.any(args, function(name) {
-      return location.pathname === Meteor.Router[name + 'Path']();
-    });
+      return 
+    });*/
+
+    var active = location.pathname === Meteor.Router[routeName + 'Path'](param);
 
     return active && 'active';
   },

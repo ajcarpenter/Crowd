@@ -29,6 +29,22 @@ Template.postCard.helpers({
 	user: function(){
 		//We've packaged the username in the post so simulate the full user object
 		return {_id: this.userId, username: this.username};
+	},
+	recentActivityLevel: function(){
+		var timeNow = new Date().getTime();
+		var lastReply = this.lastReply;
+
+		var timeDelta = Math.abs(timeNow - lastReply);
+		var imgPath = null;
+
+		if(timeDelta < 300000) //5 Minutes
+			imgPath = '/img/activity/5min.png';
+		else if(timeDelta < 600000) //10 Minutes
+			imgPath = '/img/activity/10min.png';
+		else if(timeDelta < 900000) //15 minutes
+			imgPath = '/img/activity/10min.png';
+
+		return imgPath;
 	}
 });
 
